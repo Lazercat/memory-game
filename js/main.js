@@ -2,24 +2,24 @@
 
 var cards = [
  {
- 	rank: 'queen',
- 	suit: 'hearts',
- 	cardImage: 'images/queen-of-hearts.png'
+ 	rank: "queen",
+ 	suit: "hearts",
+ 	cardImage: "images/queen-of-hearts.png"
  },
  {
- 	rank: 'queen',
- 	suit: 'diamonds',
- 	cardImage: 'images/queen-of-diamonds.png'
+ 	rank: "queen",
+ 	suit: "diamonds",
+ 	cardImage: "images/queen-of-diamonds.png"
  },
  {
- 	rank: 'king',
- 	suit: 'hearts',
- 	cardImage: 'images/king-of-hearts.png'
+ 	rank: "king",
+ 	suit: "hearts",
+ 	cardImage: "images/king-of-hearts.png"
  },
  {
- 	rank: 'king',
- 	suit: 'diamonds',
- 	cardImage: 'images/king-of-diamonds.png'
+ 	rank: "king",
+ 	suit: "diamonds",
+ 	cardImage: "images/king-of-diamonds.png"
  }
 ];
 
@@ -32,37 +32,43 @@ var checkForMatch = function(){
 		} else {
 			alert("Sorry, try again.");
 		}
-		
+
 }
 
 
-var flipCard = function(cards){
-    var cardId = this.getAttribute('data-id');
-	cardsInPlay.push(cards[cardId].rank);
-	cardsInPlay.push(cards[cardId].suit);
-	cardsInPlay.push(cards[cardId].cardImage);
-	console.log('User flipped ' + cards[cardId].rank);
-	console.log(cards[cardId].cardImage);
-	console.log(cards[cardId].suit);	
+function flipCard(cardElement){
+
+  var card = cards[this.getAttribute('data-id')];
+
+
+	cardsInPlay.push(card.rank);
+	cardsInPlay.push(card.suit);
+	cardsInPlay.push(card.cardImage);
+
+	console.log('User flipped ' + card.rank);
+	console.log(card.cardImage);
+	console.log(card.suit);
 
 	if (cardsInPlay.length === 2){
 			checkForMatch();
 		} else {
-			
+      console.log("no match yet");
 		}
 }
 
 
-var createBoard = function(){
+
+function createBoard(){
+
 	for (var i = 0; i < cards.length; i++) {
 		var cardElement = document.createElement('img');
 		cardElement.setAttribute('src', 'images/back.png');
 		cardElement.setAttribute('data-id', i);
-		cardElement.addEventListener("click", flipCard());
-		document.getElementById('game-board').appendChild('cardElement');
+    cardElement.addEventListener("click", flipCard);
+		document.getElementById('game-board').appendChild(cardElement);
 		}
 
-		
+
 }
 
 createBoard();
